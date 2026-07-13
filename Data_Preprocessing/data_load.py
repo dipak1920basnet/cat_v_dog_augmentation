@@ -1,11 +1,14 @@
-
 import os 
 import sys
 from pathlib import Path
 
-# Add the parent folder of the current notebook/script to Python's search path.
-# This allows Python to find modules (e.g., build_data.py) located one level above.
-sys.path.append(str(Path.cwd().parent))
+# Directory containing data_load.py
+CURRENT_DIR = Path(__file__).resolve().parent
+
+# Go up two levels to ug_lab
+PROJECT_ROOT = CURRENT_DIR.parent.parent
+
+sys.path.insert(0, str(PROJECT_ROOT))
 
 import build_data  # Import the module from the parent folder
 
@@ -33,3 +36,5 @@ print(f"\nContents of train directory: {os.listdir(train_dir)}")
 print(f"\nContents of validation directory: {os.listdir(validation_dir)}")
 
 
+if __name__ == "__main__":
+    main()
