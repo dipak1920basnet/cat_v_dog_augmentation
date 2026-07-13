@@ -12,29 +12,36 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 import build_data  # Import the module from the parent folder
 
-BASE_DIR = build_data.new_path()  # Call the function from build_data.py
 
+class DataLoader:
 
-train_dir = os.path.join(BASE_DIR, "train")
-validation_dir = os.path.join(BASE_DIR, "validation")
+    def __init__(self):
 
-# dir with train cat picutre
-train_cats_dir = os.path.join(train_dir, "cats")
-# dir with train dog picutre
-train_dogs_dir = os.path.join(train_dir, "dogs")
+        self.BASE_DIR = build_data.new_path()  # Call the function from build_data.py
+        self.train_dir = os.path.join(self.BASE_DIR, "train")
+        self.validation_dir = os.path.join(self.BASE_DIR, "validation")
 
-# dir with validation cat picture 
-validation_cats_dir = os.path.join(validation_dir, "cats")
+        # dir with train cat picutre
+        self.train_cats_dir = os.path.join(self.train_dir, "cats")
+        # dir with train dog picutre
+        self.train_dogs_dir = os.path.join(self.train_dir, "dogs")
 
-# dir with validation dog picture 
-validation_dogs_dir = os.path.join(validation_dir, "dogs")
+        # dir with validation cat picture 
+        self.validation_cats_dir = os.path.join(self.validation_dir, "cats")
 
-print(f"Contents of base directory: {os.listdir(BASE_DIR)}")
+        # dir with validation dog picture 
+        self.validation_dogs_dir = os.path.join(self.validation_dir, "dogs")
 
-print(f"\nContents of train directory: {os.listdir(train_dir)}")
+    def show(self):
+        print(f"Contents of base directory: {os.listdir(self.BASE_DIR)}")
+        print(f"\nContents of train directory: {os.listdir(self.train_dir)}")
+        print(f"\nContents of validation directory: {os.listdir(self.validation_dir)}")
 
-print(f"\nContents of validation directory: {os.listdir(validation_dir)}")
+    def count_images(self):
+        return {
+            "train_cats": len(os.listdir(self.train_cats_dir)),
+            "train_dogs": len(os.listdir(self.train_dogs_dir)),
+            "validation_cats":len(os.listdir(self.validation_cats_dir)),
+            "validation_dogs":len(os.listdir(self.validation_dogs_dir))
+        }
 
-
-if __name__ == "__main__":
-    main()
