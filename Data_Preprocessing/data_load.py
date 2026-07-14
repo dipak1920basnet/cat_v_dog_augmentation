@@ -45,3 +45,5 @@ class DataLoader:
             "validation_dogs":len(os.listdir(self.validation_dogs_dir))
         }
 
+    def get_data(self):
+        return self.train_dir, self.validation_dir

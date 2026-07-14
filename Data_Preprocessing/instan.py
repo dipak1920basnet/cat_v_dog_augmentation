@@ -1,17 +1,19 @@
-from data_load import DataLoader
+from .data_load import DataLoader
 import tensorflow as tf 
 
 def instantiate_data():
+
+    train_dir,validation_dir= DataLoader().get_data()
     
     train_dataset = tf.keras.utils.image_dataset_from_directory(
-        DataLoader.train_dir,
+        train_dir,
         image_size = (150,150),
         batch_size = 20,
         label_mode = "binary"
     )
 
     validation_dataset = tf.keras.utils.image_dataset_from_directory(
-        DataLoader.validation_dir,
+        validation_dir,
         image_size = (150,150),
         batch_size = 20,
         label_mode = "binary"
